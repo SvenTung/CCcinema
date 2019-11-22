@@ -34,4 +34,11 @@ class Customer
     sql = "DELETE FROM customers"
     SqlRunner.run(sql)
   end
+
+  def check_tickets()
+    sql = "SELECT films.* FROM films INNER JOIN tickets ON tickets.film_id = film.id WHERE customer_id = $1"
+    values = [@id]
+    films_array = SqlRunner.run(sql, values)
+    return films_array.map{|film_hash| Film.new(film_hash)}
+  end
 end

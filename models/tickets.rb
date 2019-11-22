@@ -33,4 +33,5 @@ class Ticket
     sql = "DELETE FROM tickets"
     SqlRunner.run(sql)
   end
+  
 end

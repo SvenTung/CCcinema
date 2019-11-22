@@ -57,4 +57,5 @@ class Customer
     films_array = SqlRunner.run(sql, values)
     return films_array.count
   end
+  
 end

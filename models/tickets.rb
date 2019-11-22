@@ -22,4 +22,10 @@ class Ticket
     tickets_array = SqlRunner.run(sql)
     return tickets_array.map{|ticket_hash| Ticket.new(ticket_hash)}
   end
+
+  def update()
+    sql = "UPDATE tickets SET (customer_id, film_id) = ($1, $2) WHERE id = $3"
+    values = [@customer_id, @film_id, @id]
+    SqlRunner.run(sql, values)
+  end
 end

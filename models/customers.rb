@@ -23,4 +23,10 @@ class Customer
     customers_array = SqlRunner.run(sql)
     return customers_array.map{|customer_hash| Customer.new(customer_hash)}
   end
+
+  def update()
+    sql = "UPDATE customers SET (name, funds) = ($1, $2) WHERE id = $3"
+    values = [@name, @funds, @id]
+    SqlRunner.run(sql, values)
+  end
 end

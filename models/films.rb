@@ -11,5 +11,4 @@ class Film
     @price = details['price'].to_i()
   end
 
-  
 end

@@ -8,7 +8,7 @@ class Customer
   def initialize(details)
     @id = details['id'].to_i() if details['id']
     @name = details['name']
-    @funds = details['funds']
+    @funds = details['funds'].to_i()
   end
 
   def save()
@@ -57,5 +57,5 @@ class Customer
     films_array = SqlRunner.run(sql, values)
     return films_array.count
   end
-  
+
 end

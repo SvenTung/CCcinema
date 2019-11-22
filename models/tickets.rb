@@ -6,8 +6,8 @@ class Ticket
 
   def initialize(details)
     @id = details['id'].to_i() if details['id']
-    @customer_id = details['customer_id']
-    @film_id = details['film_id']
+    @customer_id = details['customer_id'].to_i()
+    @film_id = details['film_id'].to_i()
   end
 
   def save()
@@ -33,5 +33,5 @@ class Ticket
     sql = "DELETE FROM tickets"
     SqlRunner.run(sql)
   end
-  
+
 end

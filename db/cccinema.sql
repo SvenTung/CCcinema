@@ -22,5 +22,7 @@ CREATE TABLE tickets (
 );
 
 CREATE TABLE screenings (
-
+  id SERIAL PRIMARY KEY,
+  film_id INT REFERENCES filds(id) ON DELETE CASCADE,
+  screening_time VARCHAR
 );

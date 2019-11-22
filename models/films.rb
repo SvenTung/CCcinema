@@ -42,4 +42,11 @@ class Film
     return customers_array.map{|customer_hash| Customer.new(customer_hash)}
   end
 
+  def count_customers()
+    sql = "SELECT customers.* FROM customers INNER JOIN tickets ON tickets.customer_id = customers.id WHERE film_id = $1"
+    values = [@id]
+    customers_array = SqlRunner.run(sql, values)
+    return customers_array.count
+  end
+
 end

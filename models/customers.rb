@@ -42,10 +42,19 @@ class Customer
     return films_array.map{|film_hash| Film.new(film_hash)}
   end
 
-  def buy_ticket()
+  def check_funds()
+    funds_remaining = @funds
     sql = "SELECT films.* FROM films INNER JOIN tickets ON tickets.film_id = films.id WHERE customer_id = $1"
     values = [@id]
     films_array = SqlRunner.run(sql, values)
-    films_array.each{|film_hash| @funds -= film_hash['price'].to_i}
+    films_array.each{|film_hash| funds_remaining -= film_hash['price'].to_i}
+    return funds_remaining
+  end
+
+  def count_tickets()
+    sql = "SELECT films.* FROM films INNER JOIN tickets ON tickets.film_id = films.id WHERE customer_id = $1"
+    values = [@id]
+    films_array = SqlRunner.run(sql, values)
+    return films_array.count
   end
 end

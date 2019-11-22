@@ -17,4 +17,10 @@ class Film
     result = SqlRunner.run(sql, values)
     @id = result[0]['id'].to_i()
   end
+
+  def self.all()
+    sql = "SELECT * FROM films"
+    films_array = SqlRunner.run(sql)
+    return films_array.map{|film_hash| Film.new(film_hash)}
+  end
 end

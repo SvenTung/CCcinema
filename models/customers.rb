@@ -17,4 +17,10 @@ class Customer
     result = SqlRunner.run(sql, values)
     @id = result[0]['id'].to_i()
   end
+
+  def self.all()
+    sql = "SELECT * FROM customers"
+    customers_array = SqlRunner.run(sql)
+    return customers_array.map{|customer_hash| Customer.new(customer_hash)}
+  end
 end
